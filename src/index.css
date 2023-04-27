@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-primary ;
+  }
+  h1,h2,h3,h4,h5 {
+    @apply font-secondary uppercase;
+  }
+  .navLink {
+    @apply leading-[55px] text-[15px] font-medium uppercase block tracking-[0.25px] px-[15px] hover:text-color-yellow hover:bg-[#343A3F]
+  }
+  .subnav {
+    @apply absolute top-[100%] left-0 invisible w-[400px] min-h-[223px] bg-color-primary z-10
+  }
+  .subnav-item {
+    @apply px-[15px] block border-b-[1px] border-[#666] text-white  hover:text-color-yellow
+  }
+  .search-form {
+    @apply block h-[60px] w-full left-0 right-0 fixed top-[55px] p-2.5 border-t-2 bg-color-primary border-white
+  }
+  .search-input {
+    @apply block border-b-[1px] max-w-full w-[calc(100%-20px)]
+  }
+  .link-btn {
+    @apply font-bold uppercase px-3 py-2.5 border border-color-primary shadow-[4px_4px_0_#000000] inline-block
+  }
+}
