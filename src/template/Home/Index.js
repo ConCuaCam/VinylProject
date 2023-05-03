@@ -16,8 +16,8 @@ function Index({
           <div className="mx-auto max-w-[1160px] lg:px-4">
             <div className="p-2.5 flex flex-col items-center">
               <h2 className='flex items-center justify-between mb-5 w-full'>
-                <span className='sm:text-[20px] font-bold'>ĐƯỢC NHẮC ĐẾN TRÊN MẠNG XÃ HỘI</span>
-                <span>
+                <span className='sm:text-[20px] font-bold pl-2.5'>SẢN PHẨM CÓ SẴN</span>
+                <span className='pr-2.5'>
                   <Link to='' className='font-primary sm:text-[14px] text-[12px] underline'>Xem đĩa giảm giá</Link>
                 </span>
               </h2>

@@ -10,7 +10,7 @@ function Index() {
     const [isShow, setIsShow] = useState(false)
 
     return (
-        <div className={` ${isOpen ? 'right-0' : '-right-full'} w-full bg-color-primary fixed top-[55px] h-full md:w-[300px] md:max-w-[40vw] lg:max-w-0 transition-all duration-300 z-20 text-white text-[16px] max-md:border-t-4`}>
+        <div className={` ${isOpen ? 'right-0' : '-right-full'} w-full bg-color-primary fixed top-[55px] h-full md:w-[300px] md:max-w-[40vw] lg:max-w-0 transition-all duration-300 z-[1000] text-white text-[16px] max-md:border-t-4`}>
             <div className="my-[15px] px-2.5">
                 <ul className='flex flex-col'>
                     <li className='relative'>

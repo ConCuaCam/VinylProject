@@ -32,31 +32,32 @@ function Cart({
                                             <div className='wrap-table'>
                                                 <table className='mb-4 w-full text-[14px]'>
                                                     <thead>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'></tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'></tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'>tên sản phẩm</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'>đơn giá</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'>số lượng</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 table-cell'>tổng tiền</tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tên sản phẩm</tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>đơn giá</tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>số lượng</tr>
+                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tổng tiền</tr>
                                                     </thead>
                                                     <tbody>
                                                         {
                                                             cart.map(item => (
-                                                                <tr>
-                                                                    <td className='border-t border-[#ddd] p-2.5 '>
+                                                                <tr className='block md:table-row md:py-0 py-2.5 md:border-0 border-b border-{#ddd]'>
+                                                                    <td className='md:border-t hidden md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
                                                                         <span onClick={() => removeFromCart(item.id)} className='text-[30px] font-extrabold cursor-pointer'>×</span>
                                                                     </td>
-                                                                    <td className='border-t border-[#ddd] p-2.5 '>
+                                                                    <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5 relative'>
                                                                         <Link to={`/vinyldetail/${item.id}`} className='inline-block'>
                                                                             <img className='max-w-[90px]' src={item.image[0]} alt="" />
                                                                         </Link>
+                                                                        <span onClick={() => removeFromCart(item.id)} className='block md:hidden absolute right-3 top-0 text-[30px] font-extrabold cursor-pointer'>×</span>
                                                                     </td>
-                                                                    <td className='border-t border-[#ddd] p-2.5'>
+                                                                    <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5'>
                                                                         <Link to={`/vinyldetail/${item.id}`} className='hover:underline  max-w-[125px] w-full inline-block'>
                                                                             {item.artist} - {item.title}
                                                                         </Link>
                                                                     </td>
-                                                                    <td className='border-t border-[#ddd] p-2.5 '>
+                                                                    <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
                                                                         {
                                                                             item.discountPrice ? (
                                                                                 <span>{item.discountPrice.toLocaleString('en-US')} ₫</span>
@@ -65,8 +66,8 @@ function Cart({
                                                                             )
                                                                         }
                                                                     </td>
-                                                                    <td className='border-t border-[#ddd] p-2.5 '>
-                                                                        <div className="quantity flex">
+                                                                    <td className='md:border-t md:table-cell block text-center border-[#ddd] p-2.5 '>
+                                                                        <div className="quantity inline-flex md:flex ">
                                                                             <button onClick={() => decreaseAmount(item.id)} className='bg-[#f4f4f4] w-[30px] relative left-[1px] h-[30px] cursor-pointer border border-[#c8bfc6]'>
                                                                                 <IoRemoveOutline className='w-full' />
                                                                             </button>
@@ -76,7 +77,7 @@ function Cart({
                                                                             </button>
                                                                         </div>
                                                                     </td>
-                                                                    <td className='border-t border-[#ddd] p-2.5 '>
+                                                                    <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
                                                                         {
                                                                             item.discountPrice ? (
                                                                                 <span>{(item.discountPrice * item.amount).toLocaleString('en-US')} ₫</span>
@@ -90,8 +91,8 @@ function Cart({
                                                         }
                                                     </tbody>
                                                 </table>
-                                                <div className="back mt-2 mb-5 border-t border-[#ddd]">
-                                                    <div className="flex items-start justify-between mt-3">
+                                                <div className="back mb-5 md:border-t border-[#ddd]">
+                                                    <div className="flex items-start justify-between mt-8">
                                                         <Link to='/allvinyl' className='border border-[rgba(0,0,0,0.09)] text-[#666] text-[0.8rem] py-[0.533rem] px-[0.933rem] leading-[1.4] uppercase hover:bg-[#f2f2f2] inline-block'>tiếp tục mua hàng</Link>
                                                         <span onClick={() => clearCart()} className='border border-[rgba(0,0,0,0.09)] text-[#666] text-[0.8rem] py-[0.533rem] px-[0.933rem] leading-[1.4] uppercase hover:bg-[#f2f2f2] cursor-pointer'>xóa giỏ hàng</span>
                                                     </div>

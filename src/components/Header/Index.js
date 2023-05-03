@@ -70,7 +70,7 @@ function Index() {
                         ))}
                       </ul>
                       <p className='px-2.5 pt-5 pb-6 text-[#474747] leading-[1.4]'>
-                        <span className='text-[16px]'>TỔNG SỐ PHỤ:</span>
+                        <span className='text-[16px] font-secondary uppercase'>tổng số phụ:</span>
                         <span className='text-[15px] float-right'>{total.toLocaleString('en-US')} ₫</span>
                       </p>
                       <div className="px-2.5 pb-5">

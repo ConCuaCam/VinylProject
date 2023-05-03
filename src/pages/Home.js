@@ -9,7 +9,7 @@ function Home() {
   //Lấy top 10 sản phẩm bán chạy nhất
 
   const filteredProducts = () => {
-    const bestSellingProducts = [...products].sort((a, b) => b.sold - a.sold).slice(0, 11);
+    const bestSellingProducts = [...products].sort((a, b) => b.sold - a.sold).slice(0, 8);
     return bestSellingProducts;
   }
   

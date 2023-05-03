@@ -37,7 +37,7 @@ const links = [
             },
             {
                 display: 'Xem tất cả',
-                path: '/',
+                path: '/allvinyl',
                 icon: <IoChevronForwardSharp className='inline-block ml-1 mb-[3px]' />
             }
         ]

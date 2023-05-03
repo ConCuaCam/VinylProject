@@ -1,8 +1,8 @@
 import React from 'react'
-
+import CheckoutTemp from '../template/Checkout'
 function Checkout() {
   return (
-    <div>Checkout</div>
+    <CheckoutTemp />
   )
 }
 
