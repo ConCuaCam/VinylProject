@@ -84,6 +84,10 @@ function CartProvider({ children }) {
     setCart([]);
   }
 
+  const [selectedPrice, setSelectedPrice] = useState("50000");
+
+  const totalCart = selectedPrice === "50000" ? total + 50000 : total + 65000;
+
   return (
     <CartContext.Provider value={{
       cart,
@@ -93,7 +97,10 @@ function CartProvider({ children }) {
       removeFromCart,
       increaseAmount,
       decreaseAmount,
-      clearCart
+      clearCart,
+      selectedPrice,
+      setSelectedPrice,
+      totalCart
     }}>
       {children}
     </CartContext.Provider>

@@ -3,12 +3,9 @@ import CartTemp from '../template/Cart/index'
 import { CartContext } from '../context/CartContext'
 
 function Cart() {
-  const { cart, total, removeFromCart, increaseAmount, decreaseAmount, clearCart } = useContext(CartContext)
+  const { cart, total, removeFromCart, increaseAmount, decreaseAmount, clearCart, selectedPrice, setSelectedPrice, totalCart } = useContext(CartContext)
   const [isShow, setIsShow] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedPrice, setSelectedPrice] = useState("50000");
-
-  const totalCart = selectedPrice === "50000" ? total + 50000 : total + 65000;
 
 
 
