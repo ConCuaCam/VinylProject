@@ -41,8 +41,8 @@ function Cart({
                                                     </thead>
                                                     <tbody>
                                                         {
-                                                            cart.map(item => (
-                                                                <tr className='block md:table-row md:py-0 py-2.5 md:border-0 border-b border-{#ddd]'>
+                                                            cart.map((item, index) => (
+                                                                <tr className='block md:table-row md:py-0 py-2.5 md:border-0 border-b border-{#ddd]' key={index}>
                                                                     <td className='md:border-t hidden md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
                                                                         <span onClick={() => removeFromCart(item.id)} className='text-[30px] font-extrabold cursor-pointer'>×</span>
                                                                     </td>
@@ -58,13 +58,7 @@ function Cart({
                                                                         </Link>
                                                                     </td>
                                                                     <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
-                                                                        {
-                                                                            item.discountPrice ? (
-                                                                                <span>{item.discountPrice.toLocaleString('en-US')} ₫</span>
-                                                                            ) : (
-                                                                                <span>{item.price.toLocaleString('en-US')} ₫</span>
-                                                                            )
-                                                                        }
+                                                                        <span>{item.discountPrice.toLocaleString('en-US')} ₫</span>
                                                                     </td>
                                                                     <td className='md:border-t md:table-cell block text-center border-[#ddd] p-2.5 '>
                                                                         <div className="quantity inline-flex md:flex ">
@@ -78,13 +72,7 @@ function Cart({
                                                                         </div>
                                                                     </td>
                                                                     <td className='md:border-t block md:table-cell md:text-left text-center border-[#ddd] p-2.5 '>
-                                                                        {
-                                                                            item.discountPrice ? (
-                                                                                <span>{(item.discountPrice * item.amount).toLocaleString('en-US')} ₫</span>
-                                                                            ) : (
-                                                                                <span>{(item.price * item.amount).toLocaleString('en-US')} ₫</span>
-                                                                            )
-                                                                        }
+                                                                        <span>{(item.discountPrice * item.amount).toLocaleString('en-US')} ₫</span>
                                                                     </td>
                                                                 </tr>
                                                             ))

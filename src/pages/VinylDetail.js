@@ -1,5 +1,5 @@
 import React, {  useContext, useEffect } from 'react'
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import VinylDetailTemp from '../template/VinylDetail'
 import { VinylContext } from '../context/VinylContext'
@@ -23,7 +23,11 @@ function VinylDetail() {
   // });
 
   if(!product) {
-    return <Navigate to="/" />
+    return (
+      <section className='h-screen flex justify-center items-center'>
+        Loading...
+      </section>
+    )
   }
 
   return (

@@ -12,7 +12,7 @@ function Info({ product, addToCart }) {
             <p className='text-[25px] mb-[5px]'>{product.artist}</p>
             <p className='mb-[5px] text-[#697077]'>{product.format}</p>
             <h4 className='text-[21px] my-2.5 flex items-center'>
-                {product.discountPrice ? (
+                {product.discountPrice !== product.price ? (
                     <>
                         <span className='text-[19px]  font-light text-color-primary line-through mr-1.5'>{product.price.toLocaleString('en-US')} ₫</span>
                         <span className=' text-[21px] font-bold mr-3'>{product.discountPrice.toLocaleString('en-US')} ₫</span>

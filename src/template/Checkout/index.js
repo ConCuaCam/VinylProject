@@ -6,7 +6,6 @@ function Checkout({
     totalCart,
     selectedPrice
 }) {
-    console.log(cart)
     return (
         <div className="main">
             <div className="max-w-[1160px] px-[15px] w-full mx-auto">

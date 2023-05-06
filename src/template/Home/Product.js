@@ -11,13 +11,13 @@ function Product({ product, index }) {
             <div className="product-inner">
                 <div className="product-image mb-4 relative">
                     <Link to={`/vinyldetail/${product.id}`}>
-                        {product.discount && (
+                        {product.discount > 0 ? (
                             <div className="absolute text-[10px] left-3 top-3">
                                 <div className="bg-[#e27c7c] text-white mb-1 px-[11px] py-[5px] leading-none">
                                     -{product.discount}%
                                 </div>
                             </div>
-                        )}
+                        ) : null }
                         <img src={product.image[0]} alt="" />
                     </Link>
                 </div>
@@ -26,7 +26,7 @@ function Product({ product, index }) {
                         <p className='product-title text-[#697077] uppercase overflow-hidden mb-[5px] truncate'>{product.title}</p>
                         <p className='artist font-semibold capitalize mb-[5px] text-ellipsis overflow-hidden'>{product.artist}</p>
                         <h4 className='price'>
-                            {product.discountPrice ? (
+                            {product.discountPrice !== product.price ? (
                                 <>
                                     <span className='md:text-[18px]  font-light text-color-primary line-through mr-1.5'>{product.price.toLocaleString('en-US')} ₫</span>
                                     <span className='md:text-[20px] text-[18px] font-bold'>{product.discountPrice.toLocaleString('en-US')} ₫</span>
