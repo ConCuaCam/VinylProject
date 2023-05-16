@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { IoCloseSharp, IoCloseOutline } from 'react-icons/io5'
 import { ModalCartContext } from '../../../context/ModalCartContext'
 import { CartContext } from '../../../context/CartContext';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-
+import { Link } from 'react-router-dom';
 function Index() {
     const { isOpen, handleClose } = useContext(ModalCartContext)
     const { cart, total, removeFromCart, increaseAmount, decreaseAmount } = useContext(CartContext)
@@ -28,13 +27,13 @@ function Index() {
                                 cart.map(item => (
                                     <div className="flex py-2.5 items-center justify-between w-full group hover:-translate-x-5 transition-all duration-500 border-dashed border-[#eee] border-t first:border-none" key={item.id}>
                                         <div className="w-20 mr-2.5 flex-shrink-0">
-                                            <Link to={`/vinyldetail/${item.id}`} onClick={() => handleClose()}>
+                                            <Link onClick = {handleClose} to={`/vinyldetail/${item.id}`} >
                                                 <img className='w-full h-auto' src={item.image[0]} alt="" />
                                             </Link>
                                         </div>
                                         <div className="flex grow-[1] mr-2.5 flex-col">
                                             <span className='block font-bold leading-[1.2] text-start mb-[5px]'>
-                                                <Link to={`/vinyldetail/${item.id}`} onClick={() => handleClose()}>{item.artist} - {item.title}</Link>
+                                                <Link onClick = {handleClose} to={`/vinyldetail/${item.id}`} >{item.artist} - {item.title}</Link>
                                             </span>
                                             {
                                                 item.discountPrice ? (
@@ -75,10 +74,10 @@ function Index() {
                                 <div className="px-[15px] pt-[15px]">
                                     <div className="flex w-full">
                                         <div className="w-1/2 mx-[5px]">
-                                            <Link to='/cart' onClick={() => handleClose()} className='h-10 leading-9 text-center px-2.5 font-bold border-2 w-full inline-block uppercase border-[#222] hover:text-white hover:bg-[#222] transition-all duration-500'>Giỏ hàng</Link>
+                                            <Link onClick = {handleClose} to='/cart' className='h-10 leading-9 text-center px-2.5 font-bold border-2 w-full inline-block uppercase border-[#222] hover:text-white hover:bg-[#222] transition-all duration-500'>Giỏ hàng</Link>
                                         </div>
                                         <div className="w-1/2 mx-[5px]">
-                                            <Link to='/checkout' onClick={() => handleClose()} className='h-10 leading-9 text-center px-2.5 font-bold border-2 w-full inline-block uppercase border-[#222] hover:text-white hover:bg-[#222] transition-all duration-500'>Thanh toán</Link>
+                                            <Link onClick = {handleClose} to='/checkout' className='h-10 leading-9 text-center px-2.5 font-bold border-2 w-full inline-block uppercase border-[#222] hover:text-white hover:bg-[#222] transition-all duration-500'>Thanh toán</Link>
                                         </div>
                                     </div>
                                 </div>

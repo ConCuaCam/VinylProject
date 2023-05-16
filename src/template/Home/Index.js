@@ -3,11 +3,21 @@ import { Link } from 'react-router-dom'
 import Hero from './Hero'
 import Product from './Product'
 import Content from './Content'
+import Loading from '../../components/Loading'
 
 
 function Index({
-  filteredProducts,
+  isLoading,
+  popularProducts,
+  addToWishlist,
+  wishlist,
+  addToCart
 }) {
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  }
   return (
     <main>
       <div className="main-content-wrap mb-8">
@@ -23,8 +33,8 @@ function Index({
               </h2>
               <div className="wrap-products">
                 <ul className='grid xl:grid-cols-4 sm:grid-cols-3 grid-cols-2 mb-8'>
-                  {filteredProducts().map((product) => {
-                    return <Product product={product} key={product.id}/>;
+                  {popularProducts.map((product) => {
+                    return <Product product = {product} key={product.id}  addToWishlist={addToWishlist} wishlist = {wishlist} addToCart = {addToCart} />;
                   })}
                 </ul>
               </div>

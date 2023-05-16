@@ -38,7 +38,7 @@ function Hero() {
                         </div>
                         <div className="mb-5">
                             <div className="mr-5">
-                                <Link to='' className='link-btn bg-[#FFF27E] hover:underline md:text-[15px] text-[11px] transition-all duration-500'>
+                                <Link to='/allvinyl' className='link-btn bg-[#FFF27E] hover:underline md:text-[15px] text-[11px] transition-all duration-500'>
                                     Xem toàn bộ kho đĩa
                                 </Link>
                             </div>

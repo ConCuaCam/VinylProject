@@ -32,12 +32,14 @@ function Cart({
                                             <div className='wrap-table'>
                                                 <table className='mb-4 w-full text-[14px]'>
                                                     <thead>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tên sản phẩm</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>đơn giá</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>số lượng</tr>
-                                                        <tr className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tổng tiền</tr>
+                                                        <tr>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></th>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'></th>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tên sản phẩm</th>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>đơn giá</th>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>số lượng</th>
+                                                            <th className='text-[#777] font-semibold uppercase text-left p-2.5 hidden md:table-cell'>tổng tiền</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
                                                         {

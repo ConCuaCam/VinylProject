@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BsBag, BsArrowRightShort } from 'react-icons/bs'
 
-function Product({ product, addToWishlist, wishlist, addToCart }) {
+function GridView({ product, addToCart, addToWishlist, wishlist }) {
     const wishlistItem = wishlist.find((item) => {
         return item.id === product.id;
     })
+
     return (
         <li className='mb-5 px-2.5 w-full relative group'>
             <div className="product-inner">
@@ -43,7 +44,7 @@ function Product({ product, addToWishlist, wishlist, addToCart }) {
                     <div className="add-links-wrap absolute top-[100px] left-0 right-0 block">
                         <div className="add-clearfix relative inline-block mb-4 top-2.5 overflow-visible">
                             <div className="wishlist absolute z-10 group-hover:-left-10 group-hover:visible group-hover:opacity-90 opacity-0 left-0 transition-all duration-500">
-                                <span onClick={() => addToWishlist(product)} className={`${wishlistItem ? "text-color-pink" : ""} cursor-pointer mx-[5px] min-w-[55px] w-9 h-9 flex text-[18px] items-center justify-center bg-white border border-[#000] shadow-[4px_4px_0_#000000]`}>
+                            <span onClick={() => addToWishlist(product)} className={`${wishlistItem ? "text-color-pink" : ""} cursor-pointer mx-[5px] min-w-[55px] w-9 h-9 flex text-[18px] items-center justify-center bg-white border border-[#000] shadow-[4px_4px_0_#000000]`}>
                                     ❤
                                 </span>
                             </div>
@@ -67,4 +68,4 @@ function Product({ product, addToWishlist, wishlist, addToCart }) {
     )
 }
 
-export default Product
+export default GridView

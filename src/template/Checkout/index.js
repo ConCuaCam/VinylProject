@@ -4,7 +4,8 @@ function Checkout({
     cart,
     total,
     totalCart,
-    selectedPrice
+    selectedPrice,
+    user
 }) {
     return (
         <div className="main">
@@ -19,33 +20,33 @@ function Checkout({
                                         <div className="info">
                                             <div className="flex justify-between mb-[15px] md:flex-row flex-col">
                                                 <p className='block w-full md:w-[48%] mb-[15px] md:mb-0'>
-                                                    <label htmlFor="" className='block mb-2'>Tên <span className='text-color-red'>*</span></label>
-                                                    <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                    <label htmlFor="firstName" className='block mb-2'>Tên <span className='text-color-red'>*</span></label>
+                                                    <input type="text" id="firstName" value={user.firstName} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                                 </p>
                                                 <p className='block w-full md:w-[48%]'>
-                                                    <label htmlFor="" className='block mb-2'>Họ <span className='text-color-red'>*</span></label>
-                                                    <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                    <label htmlFor="lastName" className='block mb-2'>Họ <span className='text-color-red'>*</span></label>
+                                                    <input type="text" id="lastName" value={user.lastName} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                                 </p>
                                             </div>
                                             <p className='block w-full mb-[15px]'>
-                                                <label htmlFor="" className='block mb-2'>Địa chỉ <span className='text-color-red'>*</span></label>
-                                                <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <label htmlFor="address" className='block mb-2'>Địa chỉ <span className='text-color-red'>*</span></label>
+                                                <input type="text" id="address" value={user.address} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
-                                                <label htmlFor="" className='block mb-2'>Tỉnh / Thành phố <span className='text-color-red'>*</span></label>
-                                                <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <label htmlFor="city" className='block mb-2'>Tỉnh / Thành phố <span className='text-color-red'>*</span></label>
+                                                <input type="text" id="address" value={user.city} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
-                                                <label htmlFor="" className='block mb-2'>Số điện thoại <span className='text-color-red'>*</span></label>
-                                                <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <label htmlFor="phone" className='block mb-2'>Số điện thoại <span className='text-color-red'>*</span></label>
+                                                <input type="text" id="phone" value={user.phone} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
-                                                <label htmlFor="" className='block mb-2'>Địa chỉ email <span className='text-color-red'>*</span></label>
-                                                <input type="text" className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <label htmlFor="email" className='block mb-2'>Địa chỉ email <span className='text-color-red'>*</span></label>
+                                                <input type="text" id="email" value={user.email} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
-                                                <label htmlFor="" className='block mb-2'>Ghi chú đơn hàng (tùy chọn)</label>
-                                                <textarea rows="2" cols="5" className='px-3 min-h-[300px] py-2 border border-[#ccc] outline-none w-full font-secondary text-[#777] text-[14px]' placeholder='Ghi chú về đơn hàng, ví dụ: thời gian chỉ dẫn địa điểm giao hàng chi tiết hơn' />
+                                                <label htmlFor="note" className='block mb-2'>Ghi chú đơn hàng (tùy chọn)</label>
+                                                <textarea rows="2" cols="5" id="note" className='px-3 min-h-[300px] py-2 border border-[#ccc] outline-none w-full font-secondary text-[#777] text-[14px]' placeholder='Ghi chú về đơn hàng, ví dụ: thời gian chỉ dẫn địa điểm giao hàng chi tiết hơn' />
                                             </p>
                                         </div>
                                     </div>
@@ -63,7 +64,7 @@ function Checkout({
                                             <tbody>
                                                 {
                                                     cart.map(item => (
-                                                        <tr>
+                                                        <tr key={item.id}>
                                                             <td className='w-[40%] border-t border-r border-[#ccc] p-2.5'> {item.artist} - {item.title}<span className='font-bold'> × {item.amount}</span></td>
                                                             <td className='border-t border-[#ccc] p-2.5'>
                                                                 {

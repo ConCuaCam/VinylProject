@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import navlinks from '../../data/links'
 function NavLinks() {
     return (
@@ -8,11 +8,11 @@ function NavLinks() {
                 {
                     navlinks.map((item, index) => (
                         <li key={index}>
-                            <NavLink to={item.path} className='navLink relative group'>
+                            <span  className='navLink cursor-pointer relative group'>
                                 {item.display} {item.icon}
                                 {
                                     item.sublinks && (
-                                        <ul className='subnav group-hover:visible transition-all duration-500'>
+                                        <ul className='subnav group-hover:visible'>
                                             {
                                                 item.sublinks.map((sublink, id) => (
                                                     <li className='w-[200px] inline-block' key={id}>
@@ -23,7 +23,7 @@ function NavLinks() {
                                         </ul>
                                     )
                                 }
-                            </NavLink>
+                            </span>
                         </li>
                     ))
                 }

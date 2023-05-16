@@ -2,20 +2,21 @@ import React, {  useContext } from 'react'
 import HomeTemp from '../template/Home/Index'
 
 import { VinylContext } from '../context/VinylContext'
+import { WishlistContext } from '../context/WishlistContext';
+import { CartContext } from '../context/CartContext';
 
 function Home() {
-  //Lấy products từ VinylContext
-  const { products } = useContext(VinylContext);
-  //Lấy top 10 sản phẩm có số lượng lớn nhất
+  const { isLoading, popularProducts } = useContext(VinylContext);
+  const { addToWishlist, wishlist } = useContext(WishlistContext);
+  const { addToCart } = useContext(CartContext);
 
-  const filteredProducts = () => {
-    const bestSellingProducts = [...products].sort((a, b) => b.quantity - a.quantity).slice(0, 8);
-    return bestSellingProducts;
-  }
-  
   return (
     <HomeTemp 
-      filteredProducts = {filteredProducts} 
+      isLoading = {isLoading}
+      popularProducts = {popularProducts}
+      addToCart = {addToCart}
+      addToWishlist = {addToWishlist}
+      wishlist = {wishlist}
     />
   )
 }

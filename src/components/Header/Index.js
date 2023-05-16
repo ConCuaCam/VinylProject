@@ -2,15 +2,26 @@ import React, { useContext, useState } from 'react'
 import Logo from '../../assets/img/Logo.png'
 import NavLinks from './NavLinks'
 import { IoCartSharp, IoMenuSharp, IoSearchSharp, IoPersonSharp, IoHeartSharp, IoBasketSharp, IoPersonCircleSharp } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { SidebarContext } from '../../context/SidebarContext';
 import { CartContext } from '../../context/CartContext';
+import { FilterContext } from '../../context/FilterContext'
+import { AuthContext } from '../../context/AuthContext'
 
 function Index() {
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { cart, total, itemAmount } = useContext(CartContext)
   const [showSearchInput, setShowSearchInput] = useState(false);
+  const { filters: { text }, updateFilterValue } = useContext(FilterContext)
+  const history = useNavigate()
+  const handleViewNewReleases = (e) => {
+    e.preventDefault()
+    // Chuyển hướng đến trang "All Products"
+    history('/allvinyl');
+  };
+
+  const { isLogin } = useContext(AuthContext);
 
   return (
     <header>
@@ -28,9 +39,14 @@ function Index() {
             <div className="search-popup cursor-pointer text-[25px] md:hidden py-2 px-3" onClick={() => setShowSearchInput(!showSearchInput)}>
               <IoSearchSharp />
             </div>
-            <form action="" className={`${showSearchInput ? 'max-md:search-form' : 'max-md:hidden'} border-b-[1px] border-[#A2A9B0] leading-[34px] flex items-center`}>
-              <input type="text" className='text-[#999] text-[13px] leading-[18px] pl-2.5 bg-transparent h-[33px] w-[398px] max-w-[283px] outline-none  max-md:search-input' placeholder='Tìm tên bài hát, album, nghệ sĩ...' />
-              <button className='pl-2.5 h-8 w-[52px] max-md:hidden text-[20px]'>
+            <form action="" onSubmit={handleViewNewReleases} className={`${showSearchInput ? 'max-md:search-form' : 'max-md:hidden'} border-b-[1px] border-[#A2A9B0] leading-[34px] flex items-center`}>
+              <input
+                type="text"
+                name="text"
+                value={text}
+                onChange={updateFilterValue}
+                className='text-[#999] text-[13px] leading-[18px] pl-2.5 bg-transparent h-[33px] w-[398px] max-w-[283px] outline-none  max-md:search-input' placeholder='Tìm tên album, nghệ sĩ...' />
+              <button type="submit" className='pl-2.5 h-8 w-[52px] max-md:hidden text-[20px]'>
                 <IoSearchSharp />
               </button>
             </form>
@@ -51,14 +67,14 @@ function Index() {
                               <Link to={`/vinyldetail/${item.id}`} className='text-[14px] block leading-[19px] truncate capitalize'>
                                 {item.artist} - {item.title}
                               </Link>
-                              <span className='font-normal'>{item.amount} × 
-                              {
-                                item.discountPrice ? (
-                                  <span className='text-black'> {item.discountPrice.toLocaleString('en-US')} ₫</span>
-                                ) : (
-                                  <span className='text-black'> {item.price.toLocaleString('en-US')} ₫</span>
-                                )
-                              }
+                              <span className='font-normal'>{item.amount} ×
+                                {
+                                  item.discountPrice ? (
+                                    <span className='text-black'> {item.discountPrice.toLocaleString('en-US')} ₫</span>
+                                  ) : (
+                                    <span className='text-black'> {item.price.toLocaleString('en-US')} ₫</span>
+                                  )
+                                }
                               </span>
                             </div>
                             <div className="products-image w-20 overflow-hidden">
@@ -104,10 +120,19 @@ function Index() {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/login' className='subnav-item text-[12px] leading-6 py-2.5 px-4 uppercase'>
-                    <IoPersonCircleSharp className='inline-block mr-2 text-[16px] mb-[3px]' />
-                    Đăng nhập/Đăng ký
-                  </Link>
+                  {
+                    isLogin ? (
+                      <Link to='/account' className='subnav-item text-[12px] leading-6 py-2.5 px-4 uppercase'>
+                        <IoPersonCircleSharp className='inline-block mr-2 text-[16px] mb-[3px]' />
+                        Tài khoản
+                      </Link>
+                    ) : (
+                      <Link to='/login' className='subnav-item text-[12px] leading-6 py-2.5 px-4 uppercase'>
+                        <IoPersonCircleSharp className='inline-block mr-2 text-[16px] mb-[3px]' />
+                        Đăng nhập/Đăng ký
+                      </Link>
+                    )
+                  }
                 </li>
               </ul>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import CartTemp from '../template/Cart/index'
 import { CartContext } from '../context/CartContext'
 
@@ -7,7 +7,9 @@ function Cart() {
   const [isShow, setIsShow] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <CartTemp

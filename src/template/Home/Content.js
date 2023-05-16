@@ -35,7 +35,7 @@ function Content() {
     return (
         <>
             <div className="wrap-button mb-5">
-                <Link to='' className='link-btn hover:underline md:text-[15px] text-[11px] transition-all duration-200'>khám phá danh sách đĩa than của vọc</Link>
+                <Link to='/allvinyl' className='link-btn hover:underline md:text-[15px] text-[11px] transition-all duration-200'>khám phá danh sách đĩa than của vọc</Link>
             </div>
             <div className="wrap-links py-12 w-full">
                 <div className="max-w-[1160px] px-5">

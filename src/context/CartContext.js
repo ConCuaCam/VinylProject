@@ -6,17 +6,13 @@ export const CartContext = createContext()
 function CartProvider({ children }) {
   const { setIsOpen } = useContext(ModalCartContext)
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("localCart")) || [])
   const [total, setTotal] = useState(0)
   const [itemAmount, setItemAmount] = useState(0);
 
-  useEffect(() => {
-    const total = cart.reduce((accumulator, currentItem) => {
-      const price = currentItem.discountPrice || currentItem.price;
-      return accumulator + price * currentItem.amount;
-    }, 0);
-    setTotal(total);
-  }, [cart]);
+  // useEffect(() => {
+  //   localStorage.setItem("localCart", JSON.stringify(cart));
+  // },[cart])
 
   useEffect(() => {
     if (cart) {
@@ -25,7 +21,25 @@ function CartProvider({ children }) {
       }, 0)
       setItemAmount(amount);
     }
+
+    const total = cart.reduce((accumulator, currentItem) => {
+      const price = currentItem.discountPrice || currentItem.price;
+      return accumulator + price * currentItem.amount;
+    }, 0);
+    setTotal(total);
+
+    localStorage.setItem("localCart", JSON.stringify(cart));
+
   }, [cart]);
+
+  // useEffect(() => {
+  //   if (cart) {
+  //     const amount = cart.reduce((accumulator, currentItem) => {
+  //       return accumulator + currentItem.amount
+  //     }, 0)
+  //     setItemAmount(amount);
+  //   }
+  // }, [cart]);
 
   const addToCart = (product, id) => {
     const newItem = { ...product, amount: 1 };

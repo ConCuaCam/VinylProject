@@ -36,8 +36,24 @@ module.exports = {
           green: '#28A820',
           pink: '#FF5B5B',
         }
+      },
+      animationDelay: {
+        450: "450ms",
+        750: "750ms",
+        1050: "1050ms",
+      },
+      keyframes: {
+        loader: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        }
+      },
+      flex: {
+        '170': '0 0 170px'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animation-delay"),
+  ],
 }

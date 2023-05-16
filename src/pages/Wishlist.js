@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import WishlistTemp from '../template/Wishlist'
+import { WishlistContext } from '../context/WishlistContext'
 
 function Wishlist() {
+  const { wishlist, removeFromWishlist } = useContext(WishlistContext)
   return (
-    <div>Wishlist</div>
+    <WishlistTemp wishlist={wishlist} removeFromWishlist={removeFromWishlist}/>
   )
 }
 
