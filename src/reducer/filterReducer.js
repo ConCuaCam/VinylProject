@@ -8,7 +8,7 @@ const filterReducer = (state, action) => {
                 ...state,
                 filter_products: [...action.payload],
                 all_products: [...action.payload],
-                filters:{...state.filters, maxPrice: maxPrice, price: maxPrice, minPrice: minPrice}
+                filters: { ...state.filters, maxPrice: maxPrice, price: maxPrice, minPrice: minPrice }
             };
         case "SET_GRID_VIEW":
             return {
@@ -31,26 +31,26 @@ const filterReducer = (state, action) => {
             let tempSortProduct = [...filter_products];
             if (sorting_value === "#") {
                 newSortData = tempSortProduct; // Sử dụng mảng ban đầu nếu sorting_value === "#"
-              } else {
+            } else {
                 const sortingProducts = (a, b) => {
-                  if (sorting_value === "lowest") {
-                    return a.discountPrice - b.discountPrice;
-                  }
-              
-                  if (sorting_value === "highest") {
-                    return b.discountPrice - a.discountPrice;
-                  }
-              
-                  if (sorting_value === "increase") {
-                    return a.releaseYear - b.releaseYear;
-                  }
-              
-                  if (sorting_value === "decrease") {
-                    return b.releaseYear - a.releaseYear;
-                  }
+                    if (sorting_value === "lowest") {
+                        return a.discountPrice - b.discountPrice;
+                    }
+
+                    if (sorting_value === "highest") {
+                        return b.discountPrice - a.discountPrice;
+                    }
+
+                    if (sorting_value === "increase") {
+                        return a.releaseYear - b.releaseYear;
+                    }
+
+                    if (sorting_value === "decrease") {
+                        return b.releaseYear - a.releaseYear;
+                    }
                 };
                 newSortData = tempSortProduct.sort(sortingProducts);
-              }
+            }
 
             return {
                 ...state,
@@ -63,34 +63,34 @@ const filterReducer = (state, action) => {
                 ...state,
                 filters: {
                     ...state.filters,
-                    [name] : value, 
+                    [name]: value,
                 },
             }
         case "FILTER_PRODUCTS":
-            let { all_products } = state ;
+            let { all_products } = state;
             let tempFilterProduct = [...all_products]
 
-            const { text , genre, situation, price } = state.filters;
+            const { text, genre, situation, price } = state.filters;
 
             if (text) {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
                     return curElem.title.toLowerCase().includes(text.toLowerCase()) || curElem.artist.toLowerCase().includes(text.toLowerCase())
-                })  
+                })
             }
 
-            if(genre !== "all") {
+            if (genre !== "all") {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
                     return curElem.genre.includes(genre);
                 });
             }
 
-            if(situation !== "all") {
-                if(situation === "conhang") {
+            if (situation !== "all") {
+                if (situation === "conhang") {
                     tempFilterProduct = tempFilterProduct.filter((curElem) => {
                         return curElem.quantity > 0;
                     })
-                } 
-                if(situation === "hethang") {
+                }
+                if (situation === "hethang") {
                     tempFilterProduct = tempFilterProduct.filter((curElem) => {
                         return curElem.quantity === 0;
                     })
@@ -106,7 +106,20 @@ const filterReducer = (state, action) => {
                 ...state,
                 filter_products: tempFilterProduct,
             }
-
+        case "CLEAR_FILTERS":
+            return {
+                ...state,
+                sorting_value: "#",
+                filters: {
+                    ...state.filters,
+                    text: "",
+                    genre: "all",
+                    situation: "all",
+                    maxPrice: state.filters.maxPrice,
+                    price: state.filters.maxPrice,
+                    minPrice: state.filters.minPrice
+                }
+            }
         default:
             return state
     }

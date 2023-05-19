@@ -14,24 +14,24 @@ import WishlistProvider from './context/WishlistContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ModalCartProvider>
-    <CartProvider>
-      <AuthProvider>
-        <SidebarProvider>
-          <VinylProvider>
-            <FilterProvider>
-              <WishlistProvider>
-                <React.StrictMode>
-                  <Router>
+  <Router>
+    <ModalCartProvider>
+      <CartProvider>
+        <AuthProvider>
+          <SidebarProvider>
+            <VinylProvider>
+              <FilterProvider>
+                <WishlistProvider>
+                  <React.StrictMode>
                     <App />
-                  </Router>
-                </React.StrictMode>
-              </WishlistProvider>
-            </FilterProvider>
-          </VinylProvider>
-        </SidebarProvider>
-      </AuthProvider>
-    </CartProvider>
-  </ModalCartProvider>
+                  </React.StrictMode>
+                </WishlistProvider>
+              </FilterProvider>
+            </VinylProvider>
+          </SidebarProvider>
+        </AuthProvider>
+      </CartProvider>
+    </ModalCartProvider>
+  </Router>
 );
 

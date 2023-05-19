@@ -23,6 +23,9 @@ function Register() {
         if (value.trim() === "") {
             setUsernameError("Yêu cầu tên tài khoản.");
             setIsFormValid(false);
+        } else if (value.length <= 7) {
+            setUsernameError('Tên tài khoản phải có ít nhất 8 ký tự.');
+            setIsFormValid(false);
         } else {
             setUsernameError("");
             setIsFormValid(password !== "" && true);
@@ -33,8 +36,9 @@ function Register() {
     const handlePasswordChange = (e) => {
         setFormError("");
         const value = e.target.value;
-        if (value.trim() === "") {
-            setPasswordError("Mục nhập mật khẩu trống.");
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+        if (!passwordRegex.test(value)) {
+            setPasswordError('Mật khẩu phải có ít nhất 8 ký tự và chứa cả chữ cái và số.');
             setIsFormValid(false);
         } else {
             setPasswordError("");
@@ -45,17 +49,12 @@ function Register() {
 
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
-        if (e.target.value.trim() === "") {
-            setConPasswordError("");
-        }
-        else if (e.target.value !== password) {
+        if (e.target.value !== password) {
             setConPasswordError('Mật khẩu và xác nhận mật khẩu không khớp');
             setIsFormValid(false);
         } else {
-            setPasswordError("");
             setConPasswordError("");
             setIsFormValid(username !== "" && password !== "" && true);
-            // setFormError("");
         }
     };
 
@@ -115,7 +114,7 @@ function Register() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
             navigate('/login')
         }
     };

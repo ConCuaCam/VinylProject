@@ -1,6 +1,5 @@
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc'
-import LoginLogo from '../../assets/img/admin-logo.png'
 import { Link } from 'react-router-dom'
 function Index({
   email,
@@ -46,7 +45,7 @@ function Index({
 
                       <p className='mb-2 block'>
                         <label htmlFor="password" className='mb-2 block'>Mật khẩu <span className='text-color-red'>*</span></label>
-                        <input type="password" id="repassword" value={password} onChange={handlePasswordChange} className='max-w-[300px] text-[#777] w-full border border-[#ccc] py-2 px-3 text-[14px] outline-none' />
+                        <input type="password" id="password" value={password} onChange={handlePasswordChange} className='max-w-[300px] text-[#777] w-full border border-[#ccc] py-2 px-3 text-[14px] outline-none' />
                       </p>
                       {PasswordError && <div className='mb-2 text-color-red'>{PasswordError}</div>}
 
@@ -54,10 +53,9 @@ function Index({
                     </form>
                   </div>
                   <div className="px-2.5">
-                    <div className="w-full flex justify-center items-center flex-col gap-5">
-                      <img src={LoginLogo} alt="" className='w-[70%]' />
-                      <p className='font-secondary text-[20px] font-light'>Chưa có tài khoản? <Link to='/register' className="text-color-pink font-normal">Đăng ký</Link></p>
-                    </div>
+                    <h2 className='py-2.5 mb-2 text-[18px] uppercase'>Tạo một tài khoản</h2>
+                    <p className='mb-5'>Hãy tạo tài khoản ngay ! Bạn có thể nhận được các dịch vụ đặc biệt cho riêng bạn như kiểm tra lịch sử mua hàng và nhận phiếu giảm giá cho thành viên. Đăng ký miễn phí ngay hôm nay!</p>
+                    <Link to='/register' className='uppercase text-white bg-color-primary px-3 py-2'>Tạo tài khoản</Link>
                   </div>
                 </div>
               </div>

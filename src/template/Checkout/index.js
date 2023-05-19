@@ -5,14 +5,34 @@ function Checkout({
     total,
     totalCart,
     selectedPrice,
-    user
+    firstName,
+    lastName,
+    address,
+    email,
+    city,
+    phone,
+    setFirstName,
+    setLastName,
+    setEmail,
+    setAddress,
+    setCity,
+    setPhone,
+    handleCheckoutSubmit,
+    formError
 }) {
     return (
         <div className="main">
             <div className="max-w-[1160px] px-[15px] w-full mx-auto">
-                <div className="px-2 5 mt-20 pb-[30px]">
+                {
+                    formError && <ul className='bg-[#f6d6d5] text-[#6d1a17] border border-[#f2c6c4] py-2.5 px-[15px] list-disc'>
+                        <li className='list-inside text-[14px]'>
+                            {formError}
+                        </li>
+                    </ul>
+                }
+                <div className="px-2 5 mt-10 pb-[30px]">
                     <div className="wrap-checkout">
-                        <form action="">
+                        <form action="" onSubmit={handleCheckoutSubmit}>
                             <div className="flex -mx-2.5 lg:flex-row flex-col">
                                 <div className="flex-1 max-w-full lg:max-w-[33.3333%] relative px-2.5">
                                     <div className="wrap-info">
@@ -21,28 +41,28 @@ function Checkout({
                                             <div className="flex justify-between mb-[15px] md:flex-row flex-col">
                                                 <p className='block w-full md:w-[48%] mb-[15px] md:mb-0'>
                                                     <label htmlFor="firstName" className='block mb-2'>Tên <span className='text-color-red'>*</span></label>
-                                                    <input type="text" id="firstName" value={user.firstName} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                    <input type="text" id="firstName" onChange={(e) => setFirstName(e.target.value)} value={firstName} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                                 </p>
                                                 <p className='block w-full md:w-[48%]'>
                                                     <label htmlFor="lastName" className='block mb-2'>Họ <span className='text-color-red'>*</span></label>
-                                                    <input type="text" id="lastName" value={user.lastName} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                    <input type="text" id="lastName" onChange={(e) => setLastName(e.target.value)} value={lastName} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                                 </p>
                                             </div>
                                             <p className='block w-full mb-[15px]'>
                                                 <label htmlFor="address" className='block mb-2'>Địa chỉ <span className='text-color-red'>*</span></label>
-                                                <input type="text" id="address" value={user.address} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <input type="text" id="address" onChange={(e) => setAddress(e.target.value)} value={address} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
                                                 <label htmlFor="city" className='block mb-2'>Tỉnh / Thành phố <span className='text-color-red'>*</span></label>
-                                                <input type="text" id="address" value={user.city} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <input type="text" id="city" onChange={(e) => setCity(e.target.value)} value={city} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
                                                 <label htmlFor="phone" className='block mb-2'>Số điện thoại <span className='text-color-red'>*</span></label>
-                                                <input type="text" id="phone" value={user.phone} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <input type="text" id="phone" onChange={(e) => setPhone(e.target.value)} value={phone} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
                                                 <label htmlFor="email" className='block mb-2'>Địa chỉ email <span className='text-color-red'>*</span></label>
-                                                <input type="text" id="email" value={user.email} readOnly className='px-3 py-2 border border-[#ccc] outline-none w-full' />
+                                                <input type="text" id="email" onChange={(e) => setEmail(e.target.value)} value={email} className='px-3 py-2 border border-[#ccc] outline-none w-full' />
                                             </p>
                                             <p className='block w-full mb-[15px]'>
                                                 <label htmlFor="note" className='block mb-2'>Ghi chú đơn hàng (tùy chọn)</label>

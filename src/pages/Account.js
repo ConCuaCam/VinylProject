@@ -16,53 +16,85 @@ function Account() {
     const [address, setAddress] = useState(user.address || '');
     const [city, setCity] = useState(user.city || '');
     const [phone, setPhone] = useState(user.phone || '');
+    const [isFormValid, setIsFormValid] = useState(false);
+
 
     const [currentPassword, setCurrentPassword] = useState('');
+    const [curPasswordError, setCurPasswordError] = useState('')
     const [newPassword, setNewPassword] = useState('');
+    const [newPasswordError, setNewPasswordError] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
+    const updatedUser = {
+        firstName,
+        lastName,
+        email,
+        address,
+        city,
+        phone,
+    };
 
-    const handleUpdateProfile = async (event) => {
-        event.preventDefault();
-        const updatedUser = {
-            firstName,
-            lastName,
-            email,
-            address,
-            city,
-            phone,
-        };
-
-        if (currentPassword && newPassword) {
-            // Kiểm tra xem currentPassword có trùng với mật khẩu hiện tại hay không
-            if (currentPassword === user.password) {
-                updatedUser.password = newPassword;
-            } else {
-                // Hiển thị thông báo lỗi nếu currentPassword không trùng khớp
-                toast.error('Mật khẩu của bạn không chính xác.', {
-                    position: "top-right",
-                    autoClose: 500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                return;
-            }
+    const handleCurPasswordChange = (e) => {
+        setErrorMessage("");
+        const value = e.target.value;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+        if (value.trim() === "") {
+            setCurPasswordError("");
         }
-        if (currentPassword === "" && newPassword === "") {
-            setErrorMessage("Vui lòng điền đủ các ô mật khẩu.");
-        } else if (currentPassword === "") {
-            setErrorMessage("Vui lòng nhập mật khẩu hiện tại của bạn.");
-        } else if (newPassword === "") {
-            setErrorMessage("Vui lòng nhật mật khẩu mới.");
+        else if (!passwordRegex.test(value)) {
+            setCurPasswordError('Mật khẩu phải có ít nhất 8 ký tự và chứa cả chữ cái và số.');
+            setIsFormValid(false);
+        } else {
+            setCurPasswordError("");
+            setIsFormValid(newPassword !== "" && true);
+        }
+        setCurrentPassword(value);
+    };
+
+    const handleNewPasswordChange = (e) => {
+        setErrorMessage("");
+        const value = e.target.value;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+        if (value.trim() === "") {
+            setNewPasswordError("");
+        }
+        else if (!passwordRegex.test(value)) {
+            setNewPasswordError('Mật khẩu phải có ít nhất 8 ký tự và chứa cả chữ cái và số.');
+            setIsFormValid(false);
+        } else {
+            setNewPasswordError("");
+            setIsFormValid(currentPassword !== "" && true);
+        }
+        setNewPassword(value);
+    };
+
+    const handleUpdateSubmit = (e) => {
+        e.preventDefault();
+        if (!currentPassword && !newPassword) {
+            handleUpdateProfile()
+            setCurPasswordError("")
+            setNewPasswordError("")
+        } else if (!currentPassword || !newPassword) {
+            // Nếu chỉ có một trong hai ô trống
+            setErrorMessage('Vui lòng điền cả ô mật khẩu hiện tại và mật khẩu mới');
+        } else if (currentPassword !== user.password) {
+            // Nếu currentPassword không khớp với mật khẩu hiện tại của người dùng
+            setErrorMessage('Mật khẩu hiện tại của bạn không chính xác.');
         } else if (currentPassword === newPassword) {
+            // Nếu currentPassword giống với newPassword
             setErrorMessage('Mật khẩu hiện tại và mật khẩu mới không được giống nhau');
-            return;
+        } else if (!isFormValid) {
+            setErrorMessage("");
+        } else {
+            // Xử lý logic cập nhật thông tin người dùng và mật khẩu
+            updatedUser.password = newPassword;
+            handleUpdateProfile()
+            setCurPasswordError("")
+            setNewPasswordError("")
         }
+    };
 
+    const handleUpdateProfile = async () => {
         // Gửi yêu cầu cập nhật thông tin người dùng
         try {
             const response = await axios.put(
@@ -86,10 +118,12 @@ function Account() {
             });
             setCurrentPassword("");
             setNewPassword("");
+            setErrorMessage("");
         } catch (error) {
             console.error('Lỗi cập nhật thông tin:', error);
         }
-    };
+    }
+
     if (isLoading) {
         return (
             <Loading />
@@ -121,6 +155,11 @@ function Account() {
             setCurrentPassword={setCurrentPassword}
             setNewPassword={setNewPassword}
             errorMessage={errorMessage}
+            handleUpdateSubmit={handleUpdateSubmit}
+            curPasswordError={curPasswordError}
+            newPasswordError={newPasswordError}
+            handleCurPasswordChange={handleCurPasswordChange}
+            handleNewPasswordChange={handleNewPasswordChange}
         />
     )
 }

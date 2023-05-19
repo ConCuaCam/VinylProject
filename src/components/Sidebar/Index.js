@@ -3,11 +3,13 @@ import { NavLink, Link } from 'react-router-dom'
 import { IoChevronDownSharp, IoChevronUpSharp, IoChevronForwardSharp, IoHeartSharp, IoBasketSharp, IoPersonCircleSharp } from 'react-icons/io5'
 
 import { SidebarContext } from '../../context/SidebarContext'
+import { AuthContext } from '../../context/AuthContext'
 
 
 function Index() {
     const { isOpen } = useContext(SidebarContext)
     const [isShow, setIsShow] = useState(false)
+    const { isLogin } = useContext(AuthContext);
 
     return (
         <div className={` ${isOpen ? 'right-0' : '-right-full'} w-full bg-color-primary fixed top-[55px] h-full md:w-[300px] md:max-w-[40vw] lg:max-w-0 transition-all duration-300 z-[1000] text-white text-[16px] max-md:border-t-4`}>
@@ -77,10 +79,19 @@ function Index() {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/login' className='block p-[15px] uppercase'>
-                            <IoPersonCircleSharp className='inline-block mr-2 mb-1 text-[18px]' />
-                            Đăng nhập/Đăng ký
-                        </Link>
+                        {
+                            isLogin ? (
+                                <Link to='/account' className='block p-[15px] uppercase'>
+                                    <IoPersonCircleSharp className='inline-block mr-2 mb-1 text-[18px]' />
+                                    Tài khoản
+                                </Link>
+                            ) : (
+                                <Link to='/login' className='block p-[15px] uppercase'>
+                                    <IoPersonCircleSharp className='inline-block mr-1 mb-[6px] text-[18px]' />
+                                    Đăng nhập/Đăng ký
+                                </Link>
+                            )
+                        }
                     </li>
                 </ul>
             </div>

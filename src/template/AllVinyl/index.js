@@ -41,7 +41,7 @@ function AllVinyl({
             <div className="wrap-loc mt-[15px]">
               <div className="flex gap-5 flex-col sm:flex-row">
                 <div className="wrap-select w-full sm:w-1/2 flex-1">
-                  <label htmlFor="" className='uppercase font-secondary mb-1 block'>Thể loại</label>
+                  <label htmlFor="genre" className='uppercase font-secondary mb-1 block'>Thể loại</label>
                   <select name="genre" id="genre" onClick={updateFilterValue} className='max-w-full text-ellipsis w-full select flex-1 font-primary font-medium text-[#999] px-2.5 py-[5px] uppercase text-[13px] border border-black cursor-text h-11 outline-none'>
                     <option value="all">tất cả</option>
                     {all_genres.map(genre => (
@@ -58,7 +58,7 @@ function AllVinyl({
                   </select>
                 </div>
                 <div className="wrap-price flex-1">
-                  <label htmlFor="" className='uppercase font-secondary'>khoảng giá</label>
+                  <span htmlFor="" className='uppercase font-secondary'>khoảng giá</span>
                   <div className="flex flex-col relative mt-5">
                     <input type="range" name="price" min={minPrice} max={maxPrice} value={price} onChange={updateFilterValue} />
                     <div className="flex justify-between text-[12px] mt-1">

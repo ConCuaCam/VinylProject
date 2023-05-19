@@ -33,7 +33,7 @@ function Info({ singleProduct, addToCart, addToWishlist, wishlist }) {
                 {discountPrice !== price ? (
                     <>
                         <span className='text-[19px]  font-light text-color-primary line-through mr-1.5'>{<FormatPrice price={price} />}</span>
-                        <span className=' text-[21px] font-bold mr-3'>{<FormatPrice discountPrice={discountPrice} />}</span>
+                        <span className=' text-[21px] font-bold mr-3'>{<FormatPrice price={discountPrice} />}</span>
                     </>
                 ) : (
                     <span className='font-bold mr-3'>{<FormatPrice price={price} />}</span>

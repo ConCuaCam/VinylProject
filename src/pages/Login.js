@@ -32,8 +32,9 @@ function Login() {
   const handlePasswordChange = (e) => {
     setFormError("");
     const value = e.target.value;
-    if (value.trim() === "") {
-      setPasswordError("Mục nhập mật khẩu trống.");
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(value)) {
+      setPasswordError('Mật khẩu phải có ít nhất 8 ký tự và chứa cả chữ cái và số.');
       setIsFormValid(false);
     } else {
       setPasswordError("");

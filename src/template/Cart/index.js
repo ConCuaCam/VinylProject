@@ -112,21 +112,23 @@ function Cart({
                                                                 type="radio"
                                                                 name="price"
                                                                 value="50000"
+                                                                id="price"
                                                                 checked={selectedPrice === "50000"}
                                                                 onChange={() => setSelectedPrice("50000")}
                                                             />
-                                                            <label htmlFor="" className='mb-2 text-[14px] inline-block'>GIAO HÀNG + ĐÓNG GÓI HỘP NHẠC: 50,000 ₫</label>
+                                                            <label htmlFor="price" className='mb-2 text-[14px] inline-block'>GIAO HÀNG + ĐÓNG GÓI HỘP NHẠC: 50,000 ₫</label>
                                                         </li>
                                                         <li>
                                                             <input
                                                                 className='mr-2'
                                                                 type="radio"
                                                                 name="price"
+                                                                id="ship"
                                                                 value="65000"
                                                                 checked={selectedPrice === "65000"}
                                                                 onChange={() => setSelectedPrice("65000")}
                                                             />
-                                                            <label htmlFor="" className='mb-2 text-[14px] inline-block'>COD: 65,000 ₫</label>
+                                                            <label htmlFor="ship" className='mb-2 text-[14px] inline-block'>COD: 65,000 ₫</label>
                                                         </li>
                                                     </ul>
                                                     <p className='p-[15px] pt-0'>Tùy chọn giao hàng sẽ được cập nhật trong quá trình thanh toán.</p>
